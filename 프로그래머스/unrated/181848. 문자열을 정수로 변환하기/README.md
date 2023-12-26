@@ -1,10 +1,10 @@
 # [level unrated] 문자열을 정수로 변환하기 - 181848 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181848?language=javascript) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/181848?language=java) 
 
 ### 성능 요약
 
-메모리: 33.4 MB, 시간: 0.02 ms
+메모리: 77.5 MB, 시간: 0.03 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2023년 12월 2일 17:54:51
+2023년 12월 2일 18:12:41
 
 ### 문제 설명
 
