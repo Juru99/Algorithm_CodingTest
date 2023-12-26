@@ -1,0 +1,9 @@
+function solution(n) {
+  let count = 0;
+  if (1 <= n && n <= 1000000) {
+    for (let i = 1; i <= n; i++) {
+      if (n % i === 0) count++;
+    }
+    return count;
+  }
+}
