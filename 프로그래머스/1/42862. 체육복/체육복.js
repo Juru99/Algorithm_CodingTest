@@ -1,3 +1,30 @@
+// 첫 번째 나의 풀이
+function solution(n, lost, reserve) {
+  const all = [];
+  let result = 0;
+
+  for (let i = 1; i <= n; i++) {
+    all[i] = 0;
+  }
+  for (let i = 0; i < lost.length; i++) {
+    all[lost[i]]--;
+  }
+  for (let i = 0; i < reserve.length; i++) {
+    all[reserve[i]]++;
+  }
+  for (let i = 1; i <= n; i++) {
+    if (all[i] + all[i + 1] === 0) {
+      all[i] = 0;
+      all[i + 1] = 0;
+    }
+  }
+  for (let i = 1; i <= n; i++) {
+    if (all[i] >= 0) result++;
+  }
+  return result;
+}
+
+// 두 번째 나의 풀이
 function subExtra(array1, array2) {
   return array1.filter((item) => !array2.includes(item)).sort((a, b) => a - b);
 }
@@ -28,3 +55,11 @@ function solution(n, lost, reserve) {
 
   return totalStudent;
 }
+
+// 27, 30 테스트 케이스 불통
+// forEach문은 배열의 길이를 동적으로 산정하기 때문에 배열의 수정을 권장되지 않음.
+// subReserve.forEach((item) => {
+//   if (subLost.includes(item - 1) || subLost.includes(item + 1)) {
+//     subLost.shift();
+//   }
+// });
