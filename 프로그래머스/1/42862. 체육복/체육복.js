@@ -1,25 +1,30 @@
+function subExtra(array1, array2) {
+  return array1.filter((item) => !array2.includes(item)).sort((a, b) => a - b);
+}
+
+/**
+ * @function - 체육복
+ * @param {Number} n - 전체 학생의 수
+ * @param {Array} lost - 체육복을 도난당한 학생 번호 1차원 배열
+ * @param {Array} reserve - 여벌의 체육복을 가져온 학생 번호 1차원 배열
+ * @returns - 체육수업을 들을 수 있는 최대 학생의 수
+ */
 function solution(n, lost, reserve) {
-    let answer = 0;
-    let lost_filter;
-    let reserve_filter;
+  const subReserve = subExtra(reserve, lost);
+  let subLost = subExtra(lost, reserve);
 
-    // 1) 2)
-    lost_filter = lost.filter(e => !reserve.includes(e)).sort((a, b)=> a-b)
-    // 1) 2)
-    reserve_filter = reserve.filter(e => !lost.includes(e)).sort((a, b)=> a-b)
-
-    for(let i=0; i<lost_filter.length; i++) {
-        for(let j=0; j<reserve_filter.length; j++) {
-            // 3)
-            if(lost_filter[i]-1 == reserve_filter[j] || lost_filter[i]+1 == reserve_filter[j]) {
-                // 4)
-                lost_filter.shift();
-            }
-        }
+  for (let i = 0; i < subLost.length; i++) {
+    for (let j = 0; j < subReserve.length; j++) {
+      if (
+        subLost[i] - 1 === subReserve[j] ||
+        subLost[i] + 1 === subReserve[j]
+      ) {
+        subLost.shift();
+      }
     }
+  }
 
-    // 5)
-    answer = n - lost_filter.length;
+  let totalStudent = n - subLost.length;
 
-    return answer;
+  return totalStudent;
 }
