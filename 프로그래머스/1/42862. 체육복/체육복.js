@@ -1,24 +1,25 @@
 function solution(n, lost, reserve) {
-  const all = {};
-  let result = 0;
+    let answer = 0;
+    let lost_filter;
+    let reserve_filter;
 
-  for (let i = 1; i <= n; i++) {
-    all[i] = 0;
-  }
-  for (let i = 0; i < lost.length; i++) {
-    all[lost[i]]--;
-  }
-  for (let i = 0; i < reserve.length; i++) {
-    all[reserve[i]]++;
-  }
-  for (let i = 1; i <= n; i++) {
-    if (all[i] + all[i + 1] === 0) {
-      all[i] = 0;
-      all[i + 1] = 0;
+    // 1) 2)
+    lost_filter = lost.filter(e => !reserve.includes(e)).sort((a, b)=> a-b)
+    // 1) 2)
+    reserve_filter = reserve.filter(e => !lost.includes(e)).sort((a, b)=> a-b)
+
+    for(let i=0; i<lost_filter.length; i++) {
+        for(let j=0; j<reserve_filter.length; j++) {
+            // 3)
+            if(lost_filter[i]-1 == reserve_filter[j] || lost_filter[i]+1 == reserve_filter[j]) {
+                // 4)
+                lost_filter.shift();
+            }
+        }
     }
-  }
-  for (let i = 1; i <= n; i++) {
-    if (all[i] >= 0) result++;
-  }
-  return result;
+
+    // 5)
+    answer = n - lost_filter.length;
+
+    return answer;
 }
